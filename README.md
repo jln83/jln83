@@ -1,7 +1,7 @@
 <h1 align="center">👋😀Hi ! I'm Julian</h1>
 <h3 align="center">A beginner developper from France</h3>
 
-- 📚 I’m currently learning **Python and PyQt5**
+- 📚 I’m currently learning **Python**, **PyQt6** and **Git** !
 
 - 💬 Ask me about **Python**
 
@@ -13,4 +13,4 @@
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.qt.io/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg" alt="qt" width="40" height="40"/> </a> </p>
+<p align="left"> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.qt.io/" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Python_and_Qt.svg/langfr-1024px-Python_and_Qt.svg.png" alt="PyQt" width="40" height="40"/> </a> </p>
