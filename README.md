@@ -1,11 +1,9 @@
-<h1 align="center">👋😀Hi ! I'm Julian</h1>
-<h3 align="center">A beginner developper from France</h3>
+<h1 align="center">👋😀Hi !</h1>
 
 - 📚 I’m currently learning **Python**, **PyQt6** and **Git** !
 
 - 💬 Ask me about **Python**
 
-- 📄 Who am i ? **Just a second year high schooler**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
