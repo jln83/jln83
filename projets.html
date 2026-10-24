@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projets · Systèmes & Réseaux</title>
+  <meta name="description" content="Projets : configuration NixOS, outil CLI, électronique, jeux et données.">
+  <meta property="og:title" content="Projets · Systèmes & Réseaux">
+  <meta property="og:description" content="Projets : configuration NixOS, outil CLI, électronique, jeux et données.">
+  <meta name="theme-color" content="#fbfaff">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <!-- Fond "vapeur" : halos flous en arrière-plan -->
+  <div class="aura" aria-hidden="true">
+    <span class="aura__blob aura__blob--1"></span>
+    <span class="aura__blob aura__blob--2"></span>
+    <span class="aura__blob aura__blob--3"></span>
+    <span class="aura__blob aura__blob--4"></span>
+  </div>
+
+  <div class="top" id="top">
+    <!-- Bandeau défilant : recherche d'alternance -->
+    <a class="ticker" href="alternance.html" aria-label="Je recherche une alternance en systèmes et réseaux, 3 ans dès septembre 2027 à Toulouse : voir ma recherche">
+      <div class="ticker__track" aria-hidden="true">
+        <div class="ticker__group">
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+        </div>
+        <div class="ticker__group">
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+        </div>
+      </div>
+    </a>
+
+    <header class="nav">
+      <a class="nav__brand" href="index.html"><span class="nav__star" aria-hidden="true">✦</span><span class="nav__sign">jln83</span></a>
+      <button class="nav__toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span>
+      </button>
+      <nav class="nav__links" id="nav-links">
+      <a href="homelab.html">Homelab</a>
+      <a href="projets.html" aria-current="page">Projets</a>
+      <a href="experiences.html">Expériences</a>
+      <a href="formation.html">Formation</a>
+      <a href="competences.html">Compétences</a>
+        <a class="nav__cta" href="alternance.html">Alternance</a>
+      </nav>
+    </header>
+  </div>
+
+  <main>
+    <section class="page-head">
+      <p class="eyebrow reveal">Projets</p>
+      <h1 class="page-head__title reveal">Ce que <em>j'ai construit</em></h1>
+      <p class="page-head__lead reveal">De mon poste de travail, entièrement décrit en code, au web et à l'électronique.</p>
+    </section>
+    <section class="section section--tight">
+      <div class="projects">
+        <div class="project project--wide reveal">
+          <div class="project__top"><span class="project__kind">Système · NixOS</span><span class="project__private">Dépôt privé</span></div>
+          <h3>Nihil</h3>
+          <p>Mes deux machines, PC fixe et portable, décrites dans une seule configuration NixOS. Réinstaller un poste à l'identique tient en une commande.</p>
+          <ul class="project__points">
+            <li>Un flake, des modules partagés : une fonctionnalité = un fichier, activée machine par machine</li>
+            <li>Pare-feu, dual-boot, environnement de bureau complet</li>
+            <li>Thème unifié du terminal à l'éditeur, documentation d'installation pas à pas</li>
+          </ul>
+          <ul class="tags"><li>Nix</li><li>Flakes</li><li>flake-parts</li><li>Infrastructure as Code</li></ul>
+        </div>
+        <div class="project reveal">
+          <div class="project__top"><span class="project__kind">Outil CLI</span><span class="project__private">Dépôt privé</span></div>
+          <h3>Nohil</h3>
+          <p>La boîte à outils de Nihil : la routine quotidienne en une commande.</p>
+          <ul class="project__points">
+            <li>État du dépôt, des générations et des mises à jour</li>
+            <li>Vérifie avant d'appliquer, rien ne change sans confirmation</li>
+            <li>Traduit les erreurs Nix en fichier, ligne et piste de correction</li>
+          </ul>
+          <ul class="tags"><li>Bash</li><li>Nix</li><li>ShellCheck</li></ul>
+        </div>
+        <a class="project reveal" href="https://github.com/jln83/QTGlider" target="_blank" rel="noopener">
+          <div class="project__top"><span class="project__kind">Électronique · Sécurité</span><span class="project__arrow">↗</span></div>
+          <h3>QTGlider</h3>
+          <p>Projet scolaire avec deux Arduino pour démontrer des fonctionnalités de « hacking » de base.</p>
+          <ul class="tags"><li>C++</li><li>Arduino</li></ul>
+        </a>
+        <a class="project reveal" href="https://github.com/jln83/Infrared-Remote_Control-Computer" target="_blank" rel="noopener">
+          <div class="project__top"><span class="project__kind">Électronique</span><span class="project__arrow">↗</span></div>
+          <h3>Télécommande IR pour PC</h3>
+          <p>Contrôler son ordinateur avec une télécommande infrarouge classique.</p>
+          <ul class="tags"><li>C++</li><li>Python</li><li>Arduino</li></ul>
+        </a>
+        <a class="project reveal" href="https://github.com/jln83/2025-Skibidi-Striker" target="_blank" rel="noopener">
+          <div class="project__top"><span class="project__kind">Jeu</span><span class="project__arrow">↗</span></div>
+          <h3>Skibidi Striker</h3>
+          <p>Shoot'em up vertical façon arcade, développé avec pygame.</p>
+          <ul class="tags"><li>Python</li><li>pygame</li></ul>
+        </a>
+        <a class="project reveal" href="https://github.com/jln83/ProjetNSI-DATA" target="_blank" rel="noopener">
+          <div class="project__top"><span class="project__kind">Données</span><span class="project__arrow">↗</span></div>
+          <h3>Projet NSI · Data</h3>
+          <p>Projet de traitement de données réalisé en spécialité NSI.</p>
+          <ul class="tags"><li>Python</li></ul>
+        </a>
+        <div class="project project--placeholder reveal">
+          <div class="project__top"><span class="project__kind">Bientôt</span></div>
+          <h3>Prochain projet</h3>
+          <p>La place est prête pour le suivant.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="next reveal">
+        <p class="eyebrow"><span class="sparkle">✦</span> Vous recrutez ?</p>
+        <h2>Je cherche une alternance en systèmes &amp; réseaux.</h2>
+        <p>Trois ans dès septembre 2027, à Toulouse. Tout ce que vous venez de voir, je l'ai construit seul : imaginez la suite dans votre équipe.</p>
+        <div class="next__actions">
+          <a class="btn btn--primary" href="alternance.html">Voir ma recherche d'alternance</a>
+          <a class="btn btn--ghost" href="homelab.html">Continuer : le homelab →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> jln83</p>
+    <nav class="footer__links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="alternance.html">Alternance</a>
+      <a href="https://github.com/jln83" target="_blank" rel="noopener">GitHub</a>
+      <a href="#top">Haut de page ↑</a>
+    </nav>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

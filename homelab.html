@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homelab · Systèmes & Réseaux</title>
+  <meta name="description" content="Homelab Proxmox / OPNsense : segmentation, SSO, cyberdéfense et supervision.">
+  <meta property="og:title" content="Homelab · Systèmes & Réseaux">
+  <meta property="og:description" content="Homelab Proxmox / OPNsense : segmentation, SSO, cyberdéfense et supervision.">
+  <meta name="theme-color" content="#fbfaff">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <!-- Fond "vapeur" : halos flous en arrière-plan -->
+  <div class="aura" aria-hidden="true">
+    <span class="aura__blob aura__blob--1"></span>
+    <span class="aura__blob aura__blob--2"></span>
+    <span class="aura__blob aura__blob--3"></span>
+    <span class="aura__blob aura__blob--4"></span>
+  </div>
+
+  <div class="top" id="top">
+    <!-- Bandeau défilant : recherche d'alternance -->
+    <a class="ticker" href="alternance.html" aria-label="Je recherche une alternance en systèmes et réseaux, 3 ans dès septembre 2027 à Toulouse : voir ma recherche">
+      <div class="ticker__track" aria-hidden="true">
+        <div class="ticker__group">
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+        </div>
+        <div class="ticker__group">
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+          <span><b>✦</b> Je recherche une alternance en systèmes &amp; réseaux</span>
+          <span>3 ans · dès septembre 2027 · Toulouse</span>
+          <span class="ticker__cta">Voir ma recherche →</span>
+        </div>
+      </div>
+    </a>
+
+    <header class="nav">
+      <a class="nav__brand" href="index.html"><span class="nav__star" aria-hidden="true">✦</span><span class="nav__sign">jln83</span></a>
+      <button class="nav__toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span>
+      </button>
+      <nav class="nav__links" id="nav-links">
+      <a href="homelab.html" aria-current="page">Homelab</a>
+      <a href="projets.html">Projets</a>
+      <a href="experiences.html">Expériences</a>
+      <a href="formation.html">Formation</a>
+      <a href="competences.html">Compétences</a>
+        <a class="nav__cta" href="alternance.html">Alternance</a>
+      </nav>
+    </header>
+  </div>
+
+  <main>
+    <section class="page-head">
+      <p class="eyebrow reveal">Projet principal</p>
+      <h1 class="page-head__title reveal">Le <em>homelab</em></h1>
+      <p class="page-head__lead reveal">Une infrastructure personnelle pensée comme un petit SI d'entreprise : une seule machine, un hyperviseur, et des services isolés par zone. L'objectif : apprendre en construisant, et documenter chaque choix.</p>
+    </section>
+    <section class="section section--tight">
+      <!-- Chiffres clés -->
+      <div class="stats reveal">
+        <div class="stat"><span class="stat__value">1</span><span class="stat__label">hôte Proxmox VE</span></div>
+        <div class="stat"><span class="stat__value">2</span><span class="stat__label">zones réseau isolées</span></div>
+        <div class="stat"><span class="stat__value">15+</span><span class="stat__label">services prévus</span></div>
+        <div class="stat"><span class="stat__value">4</span><span class="stat__label">phases de déploiement</span></div>
+      </div>
+
+      <!-- Principes -->
+      <div class="principles">
+        <article class="card reveal">
+          <span class="card__icon" aria-hidden="true">✦</span>
+          <h3>Segmenter</h3>
+          <p>Chaque zone a ses règles. Un service compromis ne peut pas rebondir librement vers le reste.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card__icon" aria-hidden="true">✧</span>
+          <h3>Centraliser l'accès</h3>
+          <p>Un seul point d'entrée (Traefik), une seule identité (LLDAP), une authentification forte (Authelia + 2FA).</p>
+        </article>
+        <article class="card reveal">
+          <span class="card__icon" aria-hidden="true">✦</span>
+          <h3>Rester léger</h3>
+          <p>Une seule VM (OPNsense), tout le reste en conteneurs LXC : chaque choix tient compte d'un CPU à 4 cœurs.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card__icon" aria-hidden="true">✧</span>
+          <h3>Tout décrire en code</h3>
+          <p>Durcissement via Ansible, infrastructure en OpenTofu, le tout versionné dans Gitea.</p>
+        </article>
+      </div>
+
+      <!-- Architecture -->
+      <div class="block reveal">
+        <div class="block__head">
+          <h3>Architecture réseau</h3>
+          <p>OPNsense est le point de passage obligé entre le réseau de la maison et les zones du labo.</p>
+        </div>
+
+        <div class="arch">
+          <div class="zone zone--home">
+            <div class="zone__head">
+              <strong>MAISON</strong>
+            </div>
+            <div class="arch__home">
+              <div class="node node--soft">
+                <span class="node__tag">Accès</span>
+                <strong>Internet</strong>
+              </div>
+              <div class="node node--soft">
+                <span class="node__tag">Hyperviseur</span>
+                <strong>Proxmox VE</strong>
+              </div>
+            </div>
+          </div>
+          <div class="arch__link" aria-hidden="true"></div>
+          <div class="arch__row">
+            <div class="node node--accent">
+              <span class="node__tag">Pare-feu</span>
+              <strong>OPNsense</strong>
+            </div>
+          </div>
+          <div class="arch__split" aria-hidden="true"><span></span><span></span></div>
+          <div class="arch__zones">
+            <div class="zone zone--prod">
+              <div class="zone__head">
+                <strong>PROD</strong>
+              </div>
+              <div class="zone__groups">
+                <div><span>Services</span><p>Identité, sécurité, supervision, sauvegarde</p></div>
+              </div>
+            </div>
+            <div class="zone zone--lab">
+              <div class="zone__head">
+                <strong>LABO</strong>
+              </div>
+              <div class="zone__groups">
+                <div><span>Tests</span><p>Machines jetables, isolées de PROD</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="note">
+          Les flux autorisés entre zones sont définis dans une <strong>matrice de flux</strong> :
+          tout ce qui n'est pas explicitement autorisé est bloqué.
+        </p>
+      </div>
+
+      <!-- Stack -->
+      <div class="block reveal">
+        <div class="block__head">
+          <h3>La stack, et pourquoi ces choix</h3>
+          <p>Chaque brique a été comparée à ses alternatives. Cliquez pour voir le raisonnement.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Domaines de la stack">
+          <button role="tab" aria-selected="true" aria-controls="tab-net" id="t-net">Réseau & identité</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-sec" id="t-sec" tabindex="-1">Cyberdéfense</button>
+          <button role="tab" aria-selected="false" aria-controls="tab-obs" id="t-obs" tabindex="-1">Supervision & DevOps</button>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="tab-net" aria-labelledby="t-net">
+          <details class="tech"><summary><span class="tech__name">Proxmox VE</span><span class="tech__role">Hyperviseur</span></summary>
+            <p>Hyperviseur bare-metal gratuit qui gère à la fois VM et LXC. VM là où un noyau isolé est nécessaire, LXC partout ailleurs pour économiser CPU et RAM. <em>Plutôt qu'ESXi</em> (payant, VM seulement) ou Docker seul (pas d'isolation noyau).</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">OPNsense</span><span class="tech__role">Pare-feu / routeur</span></summary>
+            <p>Basé sur FreeBSD et pf. Il décide qui parle à qui entre les zones. <em>Plutôt que pfSense</em> : gouvernance plus ouverte, interface moderne, mises à jour plus fréquentes.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Traefik</span><span class="tech__role">Reverse proxy</span></summary>
+            <p>Point d'entrée HTTPS unique, termine le TLS et route par nom de domaine. Aucun service n'est joignable sans passer par lui. <em>Plutôt que Nginx ou Caddy</em> : découverte dynamique et middleware forwardAuth indispensable pour Authelia.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Technitium</span><span class="tech__role">DNS interne</span></summary>
+            <p>Noms internes pour chaque service (indispensable au routage Traefik et aux certificats), blocage de domaines, et résolution chiffrée vers l'extérieur.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">WireGuard</span><span class="tech__role">VPN d'administration</span></summary>
+            <p>Cryptographie moderne (Curve25519), code minimal donc surface d'attaque réduite. Même à distance, on arrive dans un segment soumis aux règles du pare-feu.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Authelia</span><span class="tech__role">SSO · 2FA</span></summary>
+            <p>Portail d'authentification devant chaque service, TOTP et WebAuthn. <em>Plutôt que Keycloak</em> : un binaire léger, pensé pour accompagner un reverse proxy.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">LLDAP</span><span class="tech__role">Annuaire</span></summary>
+            <p>Comptes et groupes centralisés, interrogés par Authelia. <em>Plutôt qu'OpenLDAP</em> : même protocole, mais une administration simple et une empreinte minimale.</p>
+          </details>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="tab-sec" aria-labelledby="t-sec" hidden>
+          <details class="tech"><summary><span class="tech__name">CrowdSec</span><span class="tech__role">Détection · blocage</span></summary>
+            <p>L'agent analyse les logs de Traefik et OPNsense ; les bouncers appliquent le blocage au niveau HTTP et au niveau réseau. <em>Plutôt que Fail2ban</em> : réputation IP partagée et architecture multi-couches.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Suricata</span><span class="tech__role">IDS / IPS</span></summary>
+            <p>Sur OPNsense : d'abord en mode détection pour comprendre le trafic, puis en blocage.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Ansible</span><span class="tech__role">Durcissement ANSSI / CIS</span></summary>
+            <p>Playbooks idempotents : SSH par clé, mises à jour automatiques, pare-feu local. Le même niveau de sécurité sur chaque hôte, réapplicable à tout moment, testé sur un LXC avant d'être généralisé.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Proxmox Backup Server</span><span class="tech__role">Sauvegardes</span></summary>
+            <p>Sauvegardes incrémentales dédupliquées, avec vérification d'intégrité et vrais tests de restauration. Un snapshot protège d'une erreur, pas d'une panne de disque.</p>
+          </details>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="tab-obs" aria-labelledby="t-obs" hidden>
+          <details class="tech"><summary><span class="tech__name">Prometheus + Grafana</span><span class="tech__role">Métriques</span></summary>
+            <p>Collecte par scraping via node_exporter, visualisation dans Grafana. Standard de fait, PromQL puissant.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Loki</span><span class="tech__role">Logs</span></summary>
+            <p>Agrégation centralisée, indexée uniquement sur les labels, rétention courte. <em>Plutôt qu'ELK</em> : bien trop gourmand pour ce matériel.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Uptime Kuma</span><span class="tech__role">Disponibilité</span></summary>
+            <p>Vérifie que chaque service répond vraiment (HTTP, certificat, DNS) avec notifications. Complémentaire de Prometheus : un service peut être sain en interne et injoignable.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">Gitea</span><span class="tech__role">Git auto-hébergé</span></summary>
+            <p>Versionne playbooks et configurations. <em>Plutôt que GitLab</em> : quelques centaines de Mo de RAM au lieu de plusieurs Go.</p>
+          </details>
+          <details class="tech"><summary><span class="tech__name">OpenTofu</span><span class="tech__role">Infrastructure as Code</span></summary>
+            <p>Décrit VM, LXC et réseaux Proxmox en code. Fork libre (MPL 2.0) de Terraform après son changement de licence.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Roadmap -->
+      <div class="block reveal" id="roadmap">
+        <div class="block__head">
+          <h3>Feuille de route</h3>
+          <p>Un ordre pensé pour que chaque étape repose sur la précédente.</p>
+        </div>
+        <ol class="roadmap">
+          <li class="phase phase--done">
+            <div class="phase__marker"></div>
+            <div class="phase__body">
+              <span class="phase__status">Terminé</span>
+              <h4>Phase 0 · Socle</h4>
+              <p>Installation de Proxmox VE, dépôts, prise en main des LXC.</p>
+            </div>
+          </li>
+          <li class="phase phase--current">
+            <div class="phase__marker"></div>
+            <div class="phase__body">
+              <span class="phase__status">En cours</span>
+              <h4>Phase 1 · Réseau & identité</h4>
+              <ul class="checklist">
+                <li class="is-done">Conventions Proxmox (IDs, ponts réseau)</li>
+                <li class="is-done">Plan d'adressage PROD / LABO</li>
+                <li class="is-done">VM OPNsense installée</li>
+                <li class="is-doing">Matrice de flux et règles de pare-feu</li>
+                <li>DNS interne · Traefik · WireGuard</li>
+                <li>LLDAP puis Authelia avec 2FA</li>
+              </ul>
+            </div>
+          </li>
+          <li class="phase">
+            <div class="phase__marker"></div>
+            <div class="phase__body">
+              <span class="phase__status">À venir</span>
+              <h4>Phase 2 · Cyberdéfense</h4>
+              <p>Suricata, CrowdSec et ses bouncers, durcissement Ansible, Proxmox Backup Server dès les premiers services critiques.</p>
+            </div>
+          </li>
+          <li class="phase">
+            <div class="phase__marker"></div>
+            <div class="phase__body">
+              <span class="phase__status">À venir</span>
+              <h4>Phase 3 · Supervision & DevOps</h4>
+              <p>Gitea, OpenTofu, Prometheus, Grafana, Loki, Uptime Kuma.</p>
+            </div>
+          </li>
+          <li class="phase">
+            <div class="phase__marker"></div>
+            <div class="phase__body">
+              <span class="phase__status">À venir</span>
+              <h4>Phase 4 · Consolidation</h4>
+              <p>Documentation complète, test de restauration, revue des règles de pare-feu.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Matériel & conventions -->
+      <div class="duo">
+        <div class="block block--compact reveal">
+          <h3>Matériel</h3>
+          <dl class="specs">
+            <div><dt>CPU</dt><dd>Intel Core i5-6600K · 4 cœurs</dd></div>
+            <div><dt>RAM</dt><dd>16 Go DDR4</dd></div>
+            <div><dt>Stockage</dt><dd>~340 Go</dd></div>
+            <div><dt>Annexe</dt><dd>Raspberry Pi (WireGuard)</dd></div>
+          </dl>
+        </div>
+        <div class="block block--compact reveal">
+          <h3>Conventions</h3>
+          <dl class="specs">
+            <div><dt>500–599</dt><dd>Machines PROD</dd></div>
+            <div><dt>600–699</dt><dd>Machines LABO</dd></div>
+            <div><dt>vmbr ≥ 100</dt><dd>Réseaux du homelab</dd></div>
+            <div><dt>Noms</dt><dd><code>RÔLE-NN</code> · ex. <code>FW-01</code>, <code>RPX-01</code></dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="next reveal">
+        <p class="eyebrow"><span class="sparkle">✦</span> Vous recrutez ?</p>
+        <h2>Je cherche une alternance en systèmes &amp; réseaux.</h2>
+        <p>Trois ans dès septembre 2027, à Toulouse. Tout ce que vous venez de voir, je l'ai construit seul : imaginez la suite dans votre équipe.</p>
+        <div class="next__actions">
+          <a class="btn btn--primary" href="alternance.html">Voir ma recherche d'alternance</a>
+          <a class="btn btn--ghost" href="experiences.html">Continuer : mes expériences →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> jln83</p>
+    <nav class="footer__links" aria-label="Pied de page">
+      <a href="index.html">Accueil</a>
+      <a href="alternance.html">Alternance</a>
+      <a href="https://github.com/jln83" target="_blank" rel="noopener">GitHub</a>
+      <a href="#top">Haut de page ↑</a>
+    </nav>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

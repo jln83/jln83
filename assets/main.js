@@ -21,17 +21,6 @@ toggle.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expande
 links.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
-// Lien actif selon la section visible
-const navLinks = [...links.querySelectorAll('a[href^="#"]')];
-const sections = navLinks.map((a) => document.querySelector(a.getAttribute("href"))).filter(Boolean);
-const spy = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    navLinks.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#" + entry.target.id));
-  });
-}, { rootMargin: "-45% 0px -50% 0px" });
-sections.forEach((s) => spy.observe(s));
-
 // Apparition douce des blocs
 const reveal = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
